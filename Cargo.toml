@@ -2,7 +2,7 @@
 name = "twit"
 version = "0.0.0"
 edition = "2021"
-description = ""
+description = "sample crate"
 license = "MIT"
 
 
