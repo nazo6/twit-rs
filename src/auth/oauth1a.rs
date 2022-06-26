@@ -1,9 +1,9 @@
 /// Structure containing information required for Oauth1.0A authentication
 pub struct Oauth1aInfo {
-    consumer_key: String,
-    consumer_secret: String,
-    token: String,
-    token_secret: String,
+    pub(crate) consumer_key: String,
+    pub(crate) consumer_secret: String,
+    pub(crate) token: String,
+    pub(crate) token_secret: String,
 }
 
 impl Oauth1aInfo {

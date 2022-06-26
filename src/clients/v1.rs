@@ -1,32 +1,23 @@
-use std::collections::HashMap;
+use crate::auth::{oauth1a::Oauth1aInfo, oauth2::Oauth2Info};
 
-use async_trait::async_trait;
+use super::http::{Oauth1aClient, Oauth2Client, OauthClient};
 
-use super::traits::{ClientV1, V1Read};
+mod search;
 
-pub struct V1ReadWriteDMClient {
-    client: reqwest::Client,
+pub struct V1Client {
+    client: Box<dyn OauthClient>,
 }
 
-impl V1ReadWriteDMClient {
-    fn new() -> V1ReadWriteDMClient {
-        let client = reqwest::Client::new();
-        V1ReadWriteDMClient { client }
+impl V1Client {
+    const BASE_URL: &'static str = "https://api.twitter.com/1.1";
+    pub fn new(credentials: Oauth1aInfo) -> V1Client {
+        V1Client {
+            client: Box::new(Oauth1aClient::new(credentials, Self::BASE_URL)),
+        }
+    }
+    pub fn new_apponly(credentials: Oauth2Info) -> V1Client {
+        V1Client {
+            client: Box::new(Oauth2Client::new(credentials, Self::BASE_URL)),
+        }
     }
 }
-
-#[async_trait]
-impl ClientV1 for V1ReadWriteDMClient {
-    async fn get(&self, url: &str) -> Result<reqwest::Response, reqwest::Error> {
-        self.client.get(url).send().await
-    }
-    async fn post(
-        &self,
-        url: &str,
-        body: HashMap<String, String>,
-    ) -> Result<reqwest::Response, reqwest::Error> {
-        self.client.get(url).send().await
-    }
-}
-#[async_trait]
-impl V1Read for V1ReadWriteDMClient {}
