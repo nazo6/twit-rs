@@ -8,13 +8,13 @@ use crate::auth::{oauth1a::Oauth1aInfo, oauth2::Oauth2Info};
 use super::Query;
 
 #[async_trait]
-pub trait OauthClient {
+pub(crate) trait OauthClient {
     async fn get(&self, url: &str, query: Query) -> Result<reqwest::Response>;
     async fn post(&self, url: &str, query: Query) -> Result<reqwest::Response>;
 }
 
 /// Client to handle Oauth1a.
-/// This client iimplements `OauthClient` trait and add oauth signatures and so on for every
+/// This client implements `OauthClient` trait and add oauth signatures and so on for every
 /// requests.
 pub struct Oauth1aClient {
     client: reqwest::Client,
