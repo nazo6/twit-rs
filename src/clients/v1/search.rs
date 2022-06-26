@@ -1,7 +1,6 @@
 use anyhow::Result;
 
 use super::V1Client;
-use serde::Deserialize;
 
 use crate::models::v1::search::*;
 
