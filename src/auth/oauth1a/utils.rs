@@ -46,7 +46,6 @@ pub fn generate_header(
     let mut oauth_parameters: Vec<(String, String)> = vec![
         ("oauth_consumer_key".to_string(), consumer_key.to_string()),
         ("oauth_nonce".to_string(), timestamp.to_string()),
-        ("oauth_nonce".to_string(), timestamp.to_string()),
         (
             "oauth_signature_method".to_string(),
             "HMAC-SHA1".to_string(),
