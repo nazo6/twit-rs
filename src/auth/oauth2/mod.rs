@@ -1,3 +1,5 @@
+pub(crate) mod client;
+
 use anyhow::Result;
 use serde::Deserialize;
 

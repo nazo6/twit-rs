@@ -1,11 +1,13 @@
-use crate::auth::{oauth1a::Oauth1aInfo, oauth2::Oauth2Info};
-
-use super::http::{Oauth1aClient, Oauth2Client, OauthClient};
+use crate::auth::{
+    oauth1a::{client::Oauth1aClient, Oauth1aInfo},
+    oauth2::{client::Oauth2Client, Oauth2Info},
+    AuthClient,
+};
 
 mod search;
 
 pub struct V1Client {
-    client: Box<dyn OauthClient>,
+    client: Box<dyn AuthClient>,
 }
 
 impl V1Client {

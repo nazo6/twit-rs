@@ -2,7 +2,6 @@ use anyhow::Result;
 use tabled::object::{Row, Rows};
 use tabled::{MaxWidth, Modify, Table, Tabled};
 use twit::auth::oauth2::Oauth2Info;
-use twit::clients::http::{Oauth2Client, OauthClient};
 use twit::clients::v1;
 
 #[derive(Tabled)]
